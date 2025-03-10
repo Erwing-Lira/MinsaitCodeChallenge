@@ -21,3 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "MinsaitCodeChallenge"
 include(":app")
+include(":movie")
+include(":map")
+include(":upload")
+include(":profile")
+include(":sync")
