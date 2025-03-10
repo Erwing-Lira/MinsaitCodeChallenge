@@ -36,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -49,6 +52,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Modules
+    implementation(project(":map"))
+    implementation(project(":movie"))
+    implementation(project(":profile"))
+    implementation(project(":sync"))
+    implementation(project(":upload"))
+
     // Hilt
     implementation(libs.dagger.hilt)
     kapt(libs.kapt)
@@ -56,7 +66,6 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
-    implementation(libs.androidx.navigation.dynamic.features.fragment)
     implementation(libs.kotlinx.serialization.json)
 }
 

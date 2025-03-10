@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MinsaitCodeChallenge</string>
+
+    <!-- Menu -->
+    <string name="menu_profile">Profile</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_upload">Upload</string>
+    <string name="menu_sync">Sync</string>
+    <string name="menu_movie">Movie</string>
 </resources>
