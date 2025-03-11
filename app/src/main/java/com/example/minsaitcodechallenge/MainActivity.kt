@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.isConnected.collect { isConnected ->
-                    Log.d("NetworkObserve Activity", "$isConnected")
+                    binding.message.isVisible = !isConnected
                 }
             }
         }

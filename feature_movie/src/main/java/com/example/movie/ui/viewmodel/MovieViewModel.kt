@@ -6,9 +6,11 @@ import com.example.movie.domain.useCase.FetchPopularMoviesUseCase
 import com.example.movie.domain.useCase.FetchRecommendedMoviesUseCase
 import com.example.movie.domain.useCase.FetchTopMoviesUseCase
 import com.example.movie.ui.state.MovieState
+import com.example.network.observe.NetworkObserve
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +20,11 @@ class MovieViewModel @Inject constructor(
     private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase,
     private val fetchTopMoviesUseCase: FetchTopMoviesUseCase,
     private val fetchRecommendedMoviesUseCase: FetchRecommendedMoviesUseCase,
+    private val networkObserve: NetworkObserve
 ): ViewModel() {
+    private val _isConnected = MutableStateFlow(false)
+    val isConnected: StateFlow<Boolean> = _isConnected.asStateFlow()
+
     private val _popularState = MutableStateFlow<MovieState>(MovieState.Loading)
     val popularState: StateFlow<MovieState> = _popularState
 
@@ -29,6 +35,11 @@ class MovieViewModel @Inject constructor(
     val recommendedState: StateFlow<MovieState> = _recommendedState
 
     init {
+        viewModelScope.launch {
+            networkObserve.isConnected.collect {
+                _isConnected.value = it
+            }
+        }
         fetchPopularData()
         fetchTopData()
     }

@@ -4,4 +4,6 @@
     <string name="recommended_title">Recommended Movies</string>
 
     <string name="instructions">Select one movie to see recommendations</string>
+
+    <string name="no_internet_connection">No internet Connection</string>
 </resources>

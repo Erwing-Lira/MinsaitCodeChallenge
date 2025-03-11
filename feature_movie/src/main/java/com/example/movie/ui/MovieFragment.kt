@@ -57,6 +57,13 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.isConnected.collect { isConnected ->
+                    binding.containerRecommended.isVisible = isConnected
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.popularState.collect { state ->
                     when (state) {
                         is MovieState.Error -> {
