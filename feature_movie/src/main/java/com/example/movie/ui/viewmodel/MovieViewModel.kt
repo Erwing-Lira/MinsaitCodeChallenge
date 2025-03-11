@@ -2,12 +2,11 @@ package com.example.movie.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movie.domain.useCase.FetchPopularMovies
-import com.example.movie.domain.useCase.FetchRecommendedMovies
-import com.example.movie.domain.useCase.FetchTopMovies
-import com.example.movie.ui.MovieState
+import com.example.movie.domain.useCase.FetchPopularMoviesUseCase
+import com.example.movie.domain.useCase.FetchRecommendedMoviesUseCase
+import com.example.movie.domain.useCase.FetchTopMoviesUseCase
+import com.example.movie.ui.state.MovieState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -16,9 +15,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(
-    private val fetchPopularMovies: FetchPopularMovies,
-    private val fetchTopMovies: FetchTopMovies,
-    private val fetchRecommendedMovies: FetchRecommendedMovies
+    private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase,
+    private val fetchTopMoviesUseCase: FetchTopMoviesUseCase,
+    private val fetchRecommendedMoviesUseCase: FetchRecommendedMoviesUseCase,
 ): ViewModel() {
     private val _popularState = MutableStateFlow<MovieState>(MovieState.Loading)
     val popularState: StateFlow<MovieState> = _popularState
@@ -36,7 +35,7 @@ class MovieViewModel @Inject constructor(
 
     private fun fetchPopularData() {
         viewModelScope.launch {
-            fetchPopularMovies.invoke()
+            fetchPopularMoviesUseCase.invoke()
                 .onSuccess { data ->
                     _popularState.update {
                         MovieState.Success(data.results)
@@ -52,7 +51,7 @@ class MovieViewModel @Inject constructor(
 
     private fun fetchTopData() {
         viewModelScope.launch {
-            fetchTopMovies.invoke()
+            fetchTopMoviesUseCase.invoke()
                 .onSuccess { data ->
                     _bestState.update {
                         MovieState.Success(data.results)
@@ -71,7 +70,7 @@ class MovieViewModel @Inject constructor(
             _recommendedState.update {
                 MovieState.Loading
             }
-            fetchRecommendedMovies.invoke(id)
+            fetchRecommendedMoviesUseCase.invoke(id)
                 .onSuccess { data ->
                     _recommendedState.update {
                         MovieState.Success(data.results)

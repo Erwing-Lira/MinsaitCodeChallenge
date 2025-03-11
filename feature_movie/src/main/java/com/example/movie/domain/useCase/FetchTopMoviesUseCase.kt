@@ -4,7 +4,7 @@ import com.example.movie.domain.repository.TopMoviesRepository
 import com.example.network.data.remote.model.MovieResponse
 import javax.inject.Inject
 
-class FetchTopMovies @Inject constructor(
+class FetchTopMoviesUseCase @Inject constructor(
     private val topMoviesRepository: TopMoviesRepository
 ) {
     suspend operator fun invoke(): Result<MovieResponse> {

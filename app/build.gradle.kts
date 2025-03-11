@@ -56,6 +56,7 @@ dependencies {
     implementation(project(":feature_profile"))
     implementation(project(":feature_sync"))
     implementation(project(":feature_upload"))
+    implementation(project(":network"))
 
     // Modules
 

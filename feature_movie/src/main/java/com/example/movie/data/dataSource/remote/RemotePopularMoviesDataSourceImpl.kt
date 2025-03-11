@@ -1,18 +1,15 @@
-package com.example.movie.data
+package com.example.movie.data.dataSource.remote
 
-import com.example.movie.domain.repository.RecommendedMoviesRepository
 import com.example.network.data.remote.api.MovieApiService
 import com.example.network.data.remote.model.MovieResponse
 import javax.inject.Inject
 
-class RecommendationRepositoryImpl @Inject constructor(
+class RemotePopularMoviesDataSourceImpl @Inject constructor(
     private val movieApiService: MovieApiService
-) : RecommendedMoviesRepository {
-    override suspend fun getRecommendedMovies(movieId: Int): Result<MovieResponse> {
+) : RemotePopularDatasource {
+    override suspend fun getPopularMovies(): Result<MovieResponse> {
         return try {
-            val response = movieApiService.getRecommendedMovies(
-                movieId = movieId
-            )
+            val response = movieApiService.getPopularMovies()
             if (response.isSuccessful) {
                 Result.success(response.body()!!)
             } else {
@@ -22,4 +19,5 @@ class RecommendationRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
+
 }

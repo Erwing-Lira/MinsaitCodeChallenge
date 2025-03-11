@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.movie.R
 import com.example.movie.databinding.FragmentMovieBinding
 import com.example.movie.ui.adapter.MovieAdapter
+import com.example.movie.ui.state.MovieState
 import com.example.movie.ui.viewmodel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -24,6 +26,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
     private val binding get() = _binding!!
 
     private val viewModel: MovieViewModel by viewModels()
+
     private lateinit var moviePopularAdapter: MovieAdapter
     private lateinit var movieTopAdapter: MovieAdapter
     private lateinit var movieRecommendationAdapter: MovieAdapter

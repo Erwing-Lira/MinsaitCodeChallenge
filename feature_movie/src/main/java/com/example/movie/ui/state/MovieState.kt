@@ -1,4 +1,4 @@
-package com.example.movie.ui
+package com.example.movie.ui.state
 
 import com.example.network.data.remote.model.MovieDTO
 
