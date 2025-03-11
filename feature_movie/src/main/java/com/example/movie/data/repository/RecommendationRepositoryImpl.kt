@@ -1,25 +1,24 @@
 package com.example.movie.data.repository
 
+import com.example.movie.data.dataSource.local.LocalRecommendationMovieDatasource
+import com.example.movie.data.dataSource.remote.RemoteRecommendationMovieDatasource
 import com.example.movie.domain.repository.RecommendedMoviesRepository
-import com.example.network.data.remote.api.MovieApiService
 import com.example.network.data.remote.model.MovieResponse
+import com.example.network.observe.NetworkObserve
 import javax.inject.Inject
 
 class RecommendationRepositoryImpl @Inject constructor(
-    private val movieApiService: MovieApiService
+    private val networkObserve: NetworkObserve,
+    private val remoteRecommendationMovieDatasource: RemoteRecommendationMovieDatasource,
+    private val localRecommendationMovieDatasource: LocalRecommendationMovieDatasource
 ) : RecommendedMoviesRepository {
     override suspend fun getRecommendedMovies(movieId: Int): Result<MovieResponse> {
-        return try {
-            val response = movieApiService.getRecommendedMovies(
-                movieId = movieId
-            )
-            if (response.isSuccessful) {
-                Result.success(response.body()!!)
-            } else {
-                Result.failure(Throwable("Error: ${response.code()}"))
-            }
-        } catch (e: Exception) {
-            Result.failure(e)
+        val isInternetAvailable = networkObserve.isConnected.value
+
+        return if (isInternetAvailable) {
+            remoteRecommendationMovieDatasource.getRecommendedMovies(movieId)
+        } else {
+            localRecommendationMovieDatasource.getRecommendedMovies(movieId)
         }
     }
 }
