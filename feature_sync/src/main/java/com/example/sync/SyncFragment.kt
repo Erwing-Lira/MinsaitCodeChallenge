@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.example.sync.databinding.FragmentSyncBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +27,8 @@ import java.util.concurrent.TimeUnit
 class SyncFragment : Fragment(R.layout.fragment_sync) {
     private var _binding: FragmentSyncBinding? = null
     private val binding get() = _binding!!
+
+    private var workRequest: PeriodicWorkRequest? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,6 +80,8 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
             )
             .build()
 
+        this.workRequest = workRequest
+
         WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
             "LocationWork",
             ExistingPeriodicWorkPolicy.REPLACE,
@@ -85,6 +92,17 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requestLocationPermission()
+        workRequest?.let {
+            WorkManager.getInstance(requireContext()).getWorkInfoByIdLiveData(it.id).observeForever { workInfo ->
+                if (workInfo != null) {
+                    if (workInfo.state == WorkInfo.State.RUNNING) {
+                        binding.workState.text = "${resources.getString(R.string.work_flow)} ${WorkInfo.State.RUNNING.name}"
+                    } else {
+                        binding.workState.text = "${resources.getString(R.string.work_flow)} ${workInfo.state}"
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

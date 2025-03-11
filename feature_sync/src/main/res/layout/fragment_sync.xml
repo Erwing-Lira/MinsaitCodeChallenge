@@ -7,12 +7,15 @@
     tools:context=".SyncFragment">
 
     <TextView
+        android:id="@+id/work_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_sync"
+        android:textStyle="bold"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/work_flow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
