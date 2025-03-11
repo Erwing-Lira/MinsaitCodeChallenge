@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.example.movie"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 28
@@ -55,4 +55,11 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.kotlinx.serialization.json)
+    // Retrofit
+    implementation(libs.retrofit)
+
+    implementation(project(":network"))
+
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
 }

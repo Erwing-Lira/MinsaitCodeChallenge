@@ -1,3 +1,7 @@
 <resources>
-    <string name="hello_movie">Hello Movie</string>
+    <string name="popular_title">Popular Movies</string>
+    <string name="top_title">Top Rate Movies</string>
+    <string name="recommended_title">Recommended Movies</string>
+
+    <string name="instructions">Select one movie to see recommendations</string>
 </resources>

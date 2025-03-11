@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -6,15 +8,32 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+val properties = rootProject.file("local.properties").let { file ->
+    if (file.exists()) {
+        Properties().apply { load(file.inputStream()) }
+    } else {
+        Properties()
+    }
+}
+
 android {
-    namespace = "com.example.map"
+    namespace = "com.example.network"
     compileSdk = 35
+
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         minSdk = 28
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        val token: String = properties.getProperty("TMDB_TOKEN", "")
+
+        buildConfigField("String", "TOKEN", "\"${token}\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
     }
 
     buildTypes {
@@ -27,14 +46,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        viewBinding = true
+        jvmTarget = "11"
     }
 }
 
@@ -55,4 +71,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.kotlinx.serialization.json)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.gson)
 }
