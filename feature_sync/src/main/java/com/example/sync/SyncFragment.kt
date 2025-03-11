@@ -63,7 +63,7 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
 
     private fun startLocationUpdates() {
         val workRequest = PeriodicWorkRequestBuilder<LocationWorker>(
-            15,
+            5,
             TimeUnit.MINUTES
         )
             .setConstraints(

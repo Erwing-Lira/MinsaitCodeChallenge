@@ -65,7 +65,7 @@ class LocationWorker (
 
     @SuppressLint("ServiceCast")
     private fun showNotification(location: Location) {
-        val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val channelId = "location_channel"
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -73,7 +73,7 @@ class LocationWorker (
             notificationManager.createNotificationChannel(channel)
         }
 
-        val notification = NotificationCompat.Builder(applicationContext, channelId)
+        val notification = NotificationCompat.Builder(context, channelId)
             .setContentTitle("Ubicación Actualizada")
             .setContentText("Lat: ${location.latitude}, Lng: ${location.longitude}")
             .setSmallIcon(R.drawable.ic_location)
