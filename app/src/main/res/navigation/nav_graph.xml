@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_movie"/>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.example.map.MapFragment"
+        android:name="com.example.map.ui.MapFragment"
         android:label="MapFragment"
         tools:layout="@layout/fragment_map"/>
     <fragment

@@ -13,6 +13,7 @@ hiltAndroid = "2.51.1"
 navigationFragment = "2.8.8"
 kotlinxSerializationJson = "1.7.3"
 playServicesMaps = "19.1.0"
+playServicesMapsVersion = "19.1.0"
 retrofit = "2.11.0"
 coil = "3.1.0"
 roomRuntime = "2.6.1"
@@ -38,6 +39,7 @@ kapt = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid"
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragment" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragment" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }

@@ -47,7 +47,7 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
     private fun requestLocationPermission() {
         when {
             ContextCompat.checkSelfPermission(
-                requireContext(),
+                requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED -> {
                 startLocationUpdates()
@@ -56,7 +56,7 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
                 requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) -> {
-                Toast.makeText(requireContext(), "Permiso necesario", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "Permiso necesario", Toast.LENGTH_SHORT).show()
             }
             else -> {
                 val permissions = when {
