@@ -19,9 +19,16 @@ ACCOUNT_ID=String
 2. feature_upload
 3. feature_map
 
-## Evidences
-[Ver video 1](./fetchData.webm)
-[Ver video 2](./getLocalData.webm)
+## Video Evidences
+Flow between these two features (profile and movie)
+[Ver video 1](evidences/fetchData.webm)
+[Ver video 2](evidences/getLocalData.webm)
+
+## Image Evidences
+1. feature_profile
+[Profile Part](evidences/profile.png)
+2. feature_movie
+[Movie Part](evidences/movie.png)
 
 ## Opportunities to Improve
 - Integrate unit testing
