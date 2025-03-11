@@ -51,8 +51,17 @@ dependencies {
     implementation(libs.dagger.hilt)
     kapt(libs.kapt)
 
+    implementation(libs.retrofit)
+
+    implementation(project(":network"))
+    implementation(project(":database"))
+
     // Navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.kotlinx.serialization.json)
+
+    // Coil
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
 }

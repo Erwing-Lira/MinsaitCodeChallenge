@@ -1,4 +1,8 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_profile">Hello Profile</string>
+    <string name="avatar_path">Avatar path:</string>
+    <string name="username">Username:</string>
+    <string name="name">Name:</string>
+    <string name="country_locale">Country:</string>
+    <string name="include_adult">Include adult content:</string>
+    <string name="no_name">No name</string>
 </resources>

@@ -31,8 +31,10 @@ android {
         consumerProguardFiles("consumer-rules.pro")
 
         val token: String = properties.getProperty("TMDB_TOKEN", "")
+        val accountId: String = properties.getProperty("ACCOUNT_ID", "")
 
         buildConfigField("String", "TOKEN", "\"${token}\"")
+        buildConfigField("String", "ACCOUNT_ID", "\"${accountId}\"")
         buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
     }
 

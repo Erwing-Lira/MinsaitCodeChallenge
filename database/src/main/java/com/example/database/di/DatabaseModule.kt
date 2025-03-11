@@ -29,4 +29,8 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideTopMovieDao(database: AppDatabase) = database.topMovieDao()
+
+    @Provides
+    @Singleton
+    fun provideProfileDao(database: AppDatabase) = database.profileDao()
 }
