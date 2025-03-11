@@ -14,10 +14,10 @@ ACCOUNT_ID=String
 1. feature_movie
 2. feature_profile 
 3. feature_sync
+4. feature_map
 
 # Pending modules (activities)
 1. feature_upload
-2. feature_map
 
 ## Video Evidences
 Flow between these two features (profile and movie)
@@ -25,20 +25,32 @@ Flow between these two features (profile and movie)
 [Ver video 2](evidences/getLocalData.webm)
 
 ## Image Evidences
-1. feature_profile
-[Profile Part](evidences/profile.png)
 
-![profile](https://github.com/user-attachments/assets/2aff96b5-b553-4ded-8116-a011776818e8)
-
-3. feature_movie
+1. feature_movie
 [Movie Part](evidences/movie.png)
 
 ![movie](https://github.com/user-attachments/assets/e9788fdc-acc3-42e9-987b-a0e25cb16319)
 
-4. feature_sync
+2. feature_profile
+[Profile Part](evidences/profile.png)
+
+![profile](https://github.com/user-attachments/assets/2aff96b5-b553-4ded-8116-a011776818e8)
+
+3. feature_sync
 [Sync Location in Firebase](evidences/Firestore-Locations.png)
+[Notification](evidences/Notification.png)
 
 <img width="1144" alt="Firestore-Locations" src="https://github.com/user-attachments/assets/699d059e-d786-4441-a53e-98bb6972a87d" />
+
+<img width="325" alt="Notification" src="https://github.com/user-attachments/assets/dc70766d-3357-4aad-9318-cd09f60b5a30" />
+
+4. feature_map
+[Map Big](evidences/MapBig.png)
+[Map With TimeStamp](evidences/MapDetail.png)
+
+<img width="326" alt="MapBig" src="https://github.com/user-attachments/assets/e71101f9-b531-4c76-8c1d-e1d8d41d3f73" />
+
+<img width="324" alt="MapDetail" src="https://github.com/user-attachments/assets/c9145b3c-dbd5-4c8b-88a6-070de528651e" />
 
 
 ## Opportunities to Improve
