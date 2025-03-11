@@ -2,8 +2,6 @@ package com.example.movie.di
 
 import com.example.movie.data.dataSource.local.LocalPopularDatasource
 import com.example.movie.data.dataSource.local.LocalPopularDatasourceImpl
-import com.example.movie.data.dataSource.local.LocalRecommendationMovieDatasource
-import com.example.movie.data.dataSource.local.LocalRecommendationMovieDatasourceImpl
 import com.example.movie.data.dataSource.local.LocalTopMoviesDataSource
 import com.example.movie.data.dataSource.local.LocalTopMoviesDataSourceImpl
 import com.example.movie.data.dataSource.remote.RemotePopularMoviesDataSourceImpl
@@ -65,9 +63,4 @@ abstract class MoviesModule {
     abstract fun bindRemoteRecommendedMovieDatasource(
         remoteRecommendationMovieDataSourceImpl: RemoteRecommendationMovieDataSourceImpl
     ): RemoteRecommendationMovieDatasource
-
-    @Binds
-    abstract fun bindLocaleRecommendedMovieDatasource(
-        localRecommendationMovieDatasourceImpl: LocalRecommendationMovieDatasourceImpl
-    ): LocalRecommendationMovieDatasource
 }

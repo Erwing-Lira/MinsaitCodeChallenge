@@ -1,6 +1,7 @@
 package com.example.minsaitcodechallenge
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.isConnected.collect { isConnected ->
-                    bottomNavigationView.isVisible = isConnected
+                    Log.d("NetworkObserve Activity", "$isConnected")
                 }
             }
         }

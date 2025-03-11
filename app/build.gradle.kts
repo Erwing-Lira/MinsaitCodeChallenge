@@ -51,14 +51,15 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Modules
     implementation(project(":feature_map"))
     implementation(project(":feature_movie"))
     implementation(project(":feature_profile"))
     implementation(project(":feature_sync"))
     implementation(project(":feature_upload"))
     implementation(project(":network"))
-
-    // Modules
+    implementation(project(":database"))
 
     // Hilt
     implementation(libs.dagger.hilt)

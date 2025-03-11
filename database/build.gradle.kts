@@ -1,39 +1,21 @@
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     alias(libs.plugins.hilt.plugin)
     alias(libs.plugins.kotlin.serialization)
 }
 
-val properties = rootProject.file("local.properties").let { file ->
-    if (file.exists()) {
-        Properties().apply { load(file.inputStream()) }
-    } else {
-        Properties()
-    }
-}
-
 android {
-    namespace = "com.example.network"
+    namespace = "com.example.database"
     compileSdk = 35
-
-    buildFeatures {
-        buildConfig = true
-    }
 
     defaultConfig {
         minSdk = 28
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-
-        val token: String = properties.getProperty("TMDB_TOKEN", "")
-
-        buildConfigField("String", "TOKEN", "\"${token}\"")
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
     }
 
     buildTypes {
@@ -67,12 +49,8 @@ dependencies {
     implementation(libs.dagger.hilt)
     kapt(libs.kapt)
 
-    // Navigation
-    implementation(libs.androidx.navigation.fragment)
-    implementation(libs.androidx.navigation.ui)
-    implementation(libs.kotlinx.serialization.json)
-
-    // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.gson)
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }

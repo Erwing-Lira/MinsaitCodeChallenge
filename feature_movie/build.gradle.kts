@@ -58,8 +58,11 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
 
+    // Network Module
     implementation(project(":network"))
+    implementation(project(":database"))
 
+    // Coil
     implementation(libs.coil)
     implementation(libs.coil.network.okhttp)
 }

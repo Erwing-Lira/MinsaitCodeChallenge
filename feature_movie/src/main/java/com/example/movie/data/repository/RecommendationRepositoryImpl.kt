@@ -1,6 +1,5 @@
 package com.example.movie.data.repository
 
-import com.example.movie.data.dataSource.local.LocalRecommendationMovieDatasource
 import com.example.movie.data.dataSource.remote.RemoteRecommendationMovieDatasource
 import com.example.movie.domain.repository.RecommendedMoviesRepository
 import com.example.network.data.remote.model.MovieResponse
@@ -10,7 +9,6 @@ import javax.inject.Inject
 class RecommendationRepositoryImpl @Inject constructor(
     private val networkObserve: NetworkObserve,
     private val remoteRecommendationMovieDatasource: RemoteRecommendationMovieDatasource,
-    private val localRecommendationMovieDatasource: LocalRecommendationMovieDatasource
 ) : RecommendedMoviesRepository {
     override suspend fun getRecommendedMovies(movieId: Int): Result<MovieResponse> {
         val isInternetAvailable = networkObserve.isConnected.value
@@ -18,7 +16,7 @@ class RecommendationRepositoryImpl @Inject constructor(
         return if (isInternetAvailable) {
             remoteRecommendationMovieDatasource.getRecommendedMovies(movieId)
         } else {
-            localRecommendationMovieDatasource.getRecommendedMovies(movieId)
+            Result.failure(Throwable("No internet connection"))
         }
     }
 }
