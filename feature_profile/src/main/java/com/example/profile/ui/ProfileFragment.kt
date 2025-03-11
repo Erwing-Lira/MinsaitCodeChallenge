@@ -52,9 +52,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                             binding.nameContainer.isVisible = false
                             binding.usernameContainer.isVisible = false
                             binding.adultContainer.isVisible = false
+                            binding.avatar.isVisible = false
+                            binding.avatarTitle.isVisible = false
                         }
                         is UIState.Loading -> {
                             binding.circularPopularProgress.isVisible = true
+                            binding.avatar.isVisible = false
+                            binding.avatarTitle.isVisible = false
                             binding.countryContainer.isVisible = false
                             binding.nameContainer.isVisible = false
                             binding.usernameContainer.isVisible = false
@@ -77,10 +81,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                                 countryValue.text = "${state.profile.iso_639_1}-${state.profile.iso_3166_1}"
                                 adultSwitch.isChecked = state.profile.include_adult
 
-                                binding.countryContainer.isVisible = true
-                                binding.nameContainer.isVisible = true
-                                binding.usernameContainer.isVisible = true
-                                binding.adultContainer.isVisible = true
+                                avatar.isVisible = true
+                                avatarTitle.isVisible = true
+                                countryContainer.isVisible = true
+                                nameContainer.isVisible = true
+                                usernameContainer.isVisible = true
+                                adultContainer.isVisible = true
                             }
                         }
                     }
