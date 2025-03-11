@@ -77,6 +77,7 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.crashlithycs)
+    implementation(libs.androidx.work.runtime.ktx)
 }
 
 kapt {
