@@ -12,12 +12,12 @@ ACCOUNT_ID=String
 
 ## Finish modules (activities)
 1. feature_movie
-2. feature_profile
+2. feature_profile 
+3. feature_sync
 
 # Pending modules (activities)
-1. feature_sync
-2. feature_upload
-3. feature_map
+1. feature_upload
+2. feature_map
 
 ## Video Evidences
 Flow between these two features (profile and movie)
@@ -29,6 +29,8 @@ Flow between these two features (profile and movie)
 [Profile Part](evidences/profile.png)
 2. feature_movie
 [Movie Part](evidences/movie.png)
+3. feature_sync
+[Sync Location in Firebase](evidences/Firestore-Locations.png)
 
 ## Opportunities to Improve
 - Integrate unit testing
