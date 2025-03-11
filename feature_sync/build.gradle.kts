@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
     implementation(platform(libs.firebase.bom))
     implementation(libs.play.services.location)
+    implementation(libs.play.services.base)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.crashlithycs)
 }

@@ -3,8 +3,8 @@ package com.example.sync
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
-import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
@@ -27,8 +26,6 @@ import java.util.concurrent.TimeUnit
 class SyncFragment : Fragment(R.layout.fragment_sync) {
     private var _binding: FragmentSyncBinding? = null
     private val binding get() = _binding!!
-
-    private var workRequest: PeriodicWorkRequest? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +42,7 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
-        val granted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
+        val granted = permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false)
         if (granted) {
             startLocationUpdates()
         } else {
@@ -55,12 +52,22 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
 
     private fun requestLocationPermission() {
         if (!hasLocationPermission(requireContext())) {
-            requestPermissionLauncher.launch(
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                requestPermissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                    )
                 )
-            )
+            } else {
+                requestPermissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                    )
+                )
+            }
         } else {
             startLocationUpdates()
         }
@@ -68,7 +75,7 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
 
     private fun startLocationUpdates() {
         val workRequest = PeriodicWorkRequestBuilder<LocationWorker>(
-            5,
+            15,
             TimeUnit.MINUTES
         )
             .setConstraints(
@@ -80,19 +87,13 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
             )
             .build()
 
-        this.workRequest = workRequest
-
         WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
             "LocationWork",
             ExistingPeriodicWorkPolicy.REPLACE,
             workRequest
         )
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        requestLocationPermission()
-        workRequest?.let {
+        workRequest.let {
             WorkManager.getInstance(requireContext()).getWorkInfoByIdLiveData(it.id).observeForever { workInfo ->
                 if (workInfo != null) {
                     if (workInfo.state == WorkInfo.State.RUNNING) {
@@ -103,6 +104,11 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
                 }
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requestLocationPermission()
     }
 
     override fun onDestroyView() {

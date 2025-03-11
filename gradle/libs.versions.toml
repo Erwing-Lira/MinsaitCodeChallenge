@@ -12,16 +12,17 @@ constraintlayout = "2.1.4"
 hiltAndroid = "2.51.1"
 navigationFragment = "2.8.8"
 kotlinxSerializationJson = "1.7.3"
+playServicesMaps = "19.1.0"
 retrofit = "2.11.0"
 coil = "3.1.0"
 roomRuntime = "2.6.1"
 workRuntimeKtx = "2.10.0"
-firebaseFirestoreKtx = "25.1.2"
 playServicesLocation = "21.3.0"
 firebaseCommonKtx = "21.0.0"
 firebaseBoom = "33.10.0"
 firebaseCommon = "21.0.0"
 google-services = "4.4.2"
+playServicesBase = "18.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +48,7 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
 firebase-crashlithycs = { module = "com.google.firebase:firebase-analytics" }
+play-services-base = { module = "com.google.android.gms:play-services-base", version.ref = "playServicesBase" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBoom" }
