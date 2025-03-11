@@ -3,6 +3,13 @@
 ## Architecture
 ![architecture](https://github.com/user-attachments/assets/59bd38ff-c903-45f6-869f-8dff2a574a3a)
 
+## To be able to run
+Put in the local.properties file the two parameters, the first one is the api key and the second de account_id
+```
+TMDB_TOKEN=String
+ACCOUNT_ID=String
+```
+
 ## Finish modules (activities)
 1. feature_movie
 2. feature_profile
