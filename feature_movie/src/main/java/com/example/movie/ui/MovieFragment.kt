@@ -78,6 +78,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
 
                         is MovieState.Success -> {
                             moviePopularAdapter.submitList(state.movies)
+                            binding.errorRecommended.isVisible = false
                             binding.recyclerPopularMovies.adapter = moviePopularAdapter
                             binding.recyclerPopularMovies.isVisible = true
                             binding.circularPopularProgress.isVisible = false
