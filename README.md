@@ -15,9 +15,7 @@ ACCOUNT_ID=String
 2. feature_profile 
 3. feature_sync
 4. feature_map
-
-# Pending modules (activities)
-1. feature_upload
+5. feature_upload
 
 ## Video Evidences
 Flow between these two features (profile and movie)
@@ -51,6 +49,12 @@ Flow between these two features (profile and movie)
 <img width="326" alt="MapBig" src="https://github.com/user-attachments/assets/e71101f9-b531-4c76-8c1d-e1d8d41d3f73" />
 
 <img width="324" alt="MapDetail" src="https://github.com/user-attachments/assets/c9145b3c-dbd5-4c8b-88a6-070de528651e" />
+
+5. feature_upload 
+Not be able to see the data because Firebase Storage is not free for my account
+However I added the code
+[Storage price](evidences/storage.png)
+
 
 
 ## Opportunities to Improve
