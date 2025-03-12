@@ -12,7 +12,6 @@ constraintlayout = "2.1.4"
 hiltAndroid = "2.51.1"
 navigationFragment = "2.8.8"
 kotlinxSerializationJson = "1.7.3"
-playServicesMaps = "19.1.0"
 playServicesMapsVersion = "19.1.0"
 retrofit = "2.11.0"
 coil = "3.1.0"
@@ -49,6 +48,7 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRunt
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
+firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
 firebase-crashlithycs = { module = "com.google.firebase:firebase-analytics" }
 play-services-base = { module = "com.google.android.gms:play-services-base", version.ref = "playServicesBase" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }

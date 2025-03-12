@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_sync"/>
     <fragment
         android:id="@+id/uploadFragment"
-        android:name="com.example.upload.UploadFragment"
+        android:name="com.example.upload.ui.UploadFragment"
         android:label="UploadFragment"
         tools:layout="@layout/fragment_upload"/>
 
