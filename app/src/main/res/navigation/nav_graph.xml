@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_map"/>
     <fragment
         android:id="@+id/syncFragment"
-        android:name="com.example.sync.SyncFragment"
+        android:name="com.example.sync.ui.SyncFragment"
         android:label="SyncFragment"
         tools:layout="@layout/fragment_sync"/>
     <fragment
