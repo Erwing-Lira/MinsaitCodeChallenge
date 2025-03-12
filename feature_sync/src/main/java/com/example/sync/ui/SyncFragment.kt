@@ -41,7 +41,6 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
             viewModel.updateLocationPermission(true)
         } else {
             viewModel.updateLocationPermission(false)
-            Toast.makeText(requireContext(), "Permission Location denied", Toast.LENGTH_SHORT).show()
         }
     }
     private val requestNotificationPermissionLauncher: ActivityResultLauncher<String> = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
@@ -49,7 +48,6 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
             viewModel.updateNotificationPermission(true)
         } else {
             viewModel.updateNotificationPermission(false)
-            Toast.makeText(requireContext(), "Permission Notification denied", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -70,7 +68,7 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
                 viewModel.updateLocationPermission(true)
             }
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                Toast.makeText(requireContext(), "Permission is needed get Location", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Permission is needed to get Location", Toast.LENGTH_SHORT).show()
                 requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             }
             else -> {
@@ -88,7 +86,7 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
                 viewModel.updateNotificationPermission(true)
             }
             shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
-                Toast.makeText(requireContext(), "Permission is needed get Location", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Permission is needed to show a Notification", Toast.LENGTH_SHORT).show()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
                 }
