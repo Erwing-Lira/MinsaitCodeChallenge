@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -15,6 +17,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        val localProperties = Properties().apply {
+            load(File(rootProject.rootDir, "local.properties").inputStream())
+        }
+        val googleMapsApiKey = localProperties["GOOGLE_MAPS_API_KEY"] as String
+        resValue("string", "google_maps_key", googleMapsApiKey)
     }
 
     buildTypes {
