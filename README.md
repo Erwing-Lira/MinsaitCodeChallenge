@@ -66,3 +66,4 @@ Make sure your Firebase project is on the pay-as-you-go Blaze pricing plan. If y
 - Integrate unit testing
 - Create a custom RecyclerView to avoid boilerplate
 - Using WorkManager the minimum time (intervals) to send information or execute this manager is at least 15 minutes
+- Improve to manage the permission in the feature_sync to get current Location and show a Notification
