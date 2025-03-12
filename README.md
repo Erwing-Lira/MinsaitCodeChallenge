@@ -50,12 +50,17 @@ Flow between these two features (profile and movie)
 
 <img width="324" alt="MapDetail" src="https://github.com/user-attachments/assets/c9145b3c-dbd5-4c8b-88a6-070de528651e" />
 
-5. feature_upload 
-Not be able to see the data because Firebase Storage is not free for my account
-However I added the code
+5. feature_upload
+
+I finished this module, but I couldn't verify that the photos were uploaded, since my Google account requires me to purchase a plan to be able to use this feature, so I'm uploading evidence of this.
+
+The documentation also indicates this plan:
+Make sure your Firebase project is on the pay-as-you-go Blaze pricing plan. If you're new to Firebase and Google Cloud, check if you're eligible for a $300 credit.
+[Firebase Storage](https://firebase.google.com/docs/storage/android/start)
+
 [Storage price](evidences/storage.png)
 
-
+<img width="555" alt="storage" src="https://github.com/user-attachments/assets/fea21287-2db4-4c50-82a1-949494c60079" />
 
 ## Opportunities to Improve
 - Integrate unit testing
