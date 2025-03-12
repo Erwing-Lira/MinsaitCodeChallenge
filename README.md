@@ -8,6 +8,7 @@ Put in the local.properties file the two parameters, the first one is the api ke
 ```
 TMDB_TOKEN=String
 ACCOUNT_ID=String
+GOOGLE_MAPS_API_KEY=String
 ```
 
 ## Finish modules (activities)
