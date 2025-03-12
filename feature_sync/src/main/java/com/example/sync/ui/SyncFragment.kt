@@ -142,17 +142,14 @@ class SyncFragment : Fragment(R.layout.fragment_sync) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.permissions.collect { state ->
-                    when {
-                        state.isLocationPermissionGranted == false -> {
-                            requestLocationPermissionLauncher
-                        }
-                        state.isNotificationPermissionGranted == false -> {
-                            requestLocationPermissionLauncher
-                        }
-                        state.isLocationPermissionGranted == true && state.isNotificationPermissionGranted == true -> {
-                            startLocationUpdates()
-                        }
-                        else -> Unit
+                    if (state.isLocationPermissionGranted == false) {
+                        requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+                    }
+                    if (state.isNotificationPermissionGranted == false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }
+                    if (state.isLocationPermissionGranted == true && state.isNotificationPermissionGranted == true) {
+                        startLocationUpdates()
                     }
                 }
             }
