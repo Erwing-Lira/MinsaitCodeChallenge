@@ -10,6 +10,7 @@ TMDB_TOKEN=String
 ACCOUNT_ID=String
 GOOGLE_MAPS_API_KEY=String
 ```
+Also, paste the ```google-services.json``` file in the module app
 
 ## Finish modules (activities)
 1. feature_movie
